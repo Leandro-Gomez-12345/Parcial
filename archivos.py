@@ -6,6 +6,21 @@ Además de ello, cada compra deberá ser registrada en un archivo de excel utili
 y se deberá crear otro documento informando la cantidad de dinero que se espera obtener tras cada mes
 dadas las cuotas que cada cliente haya pactado pagar. """
 
-#def factura():
+def factura(diccionario, interes):
+    with open("factura "+diccionario["Nombre"]+".txt", "w") as archivo:
+        archivo.write("     LUXURY CARS     \n")
+        archivo.write("-------------------------------\n")
+        archivo.write("Nombre: "+ diccionario["Nombre"] +"\n")
+        archivo.write("Cedula: "+ diccionario["Cedula"] +"\n")
+        archivo.write("Vehiculo: "+ diccionario["Carro"] +"\n")
+        if interes:
+            archivo.write("Sistemas de credito: "+ diccionario["Entidad"] +'\n')
+        archivo.write("Precio:"+ str(diccionario["Precio"]) +'\n')
+        if interes:
+            archivo.write("Cuota:"+ str(diccionario["Cuota"]) +'\n')
+        archivo.write("Total:"+ str(diccionario["Total"]) +'\n')
+        archivo.write("|GRACIAS POR TU COMPRA "+ diccionario["Nombre"] + "!")
+        """tabla=pd.DataFrame({"Nombre:"[nombre], "Cedula:"[cedula], "Vehiculo:"[ marca[contador]["Modelo"]], "Precio:"[str(precio_)], "Cuota:"[str(round(precio / meses))], "Total:"[str(precio)]})
+        tabla.to_excel("datos.xlsx", index=False)"""
 
 #def excel():

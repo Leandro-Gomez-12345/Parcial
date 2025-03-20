@@ -1,6 +1,7 @@
 import tkinter as tk
 import imagenes as img
 import calculos as cl
+from archivos import *
 
 #--------------------Interfaz----------------------#
 interfaz=tk.Tk()
@@ -54,6 +55,8 @@ def clean(frame):
     for widget in frame.winfo_children():
         widget.destroy()
 
+
+         
 def informacion_comprador(con_interes):
     clean(interfaz)
     frame_blanco = tk.Frame(interfaz,bg="white", width=1200, height=600)
@@ -74,9 +77,14 @@ def informacion_comprador(con_interes):
     cedula_entry = tk.Entry(frame_blanco, font=("Georgia", 30))
     cedula_entry.place(relx=0.55, rely=0.6)
     
+    if con_interes:
+        comando = pag_compra_exitosa2
+    else:
+        comando = pag_compra_exitosa
+
     aceptar_boton = tk.Button(frame_blanco, text="Guardar", font=("Georgia", 20), bg="black", fg="white", 
                               activebackground="white", activeforeground="black", cursor="hand2",
-                              command=pag_compra_exitosa2 if con_interes else pag_compra_exitosa)
+                              command=lambda: comando(nombre_entry.get(), cedula_entry.get()))
     aceptar_boton.place(relx=0.45, rely=0.8)
     regresar_boton = tk.Button(frame_blanco, text=" < ", bg="black", fg="white", font=("georgia", 20), command=pag_compra)
     regresar_boton.place(x=70, y=520)
@@ -122,7 +130,7 @@ def pag_info():
 
 #-------------Interfaz calculadora de credito-----------------
 def calculadora_interfaz():
-    global meses_entry, sistema_entry
+    global meses_entry, sistema_entry, seleccion
     clean(interfaz)
     frame_blanco=tk.Frame(interfaz,bg="white", width=1200, height=600)
     frame_blanco.place(relx=0.5, rely=0.5, anchor="center")
@@ -238,7 +246,6 @@ def credito():
     regresar_boton = tk.Button(frame_blanco, text=" < ", bg="black", fg="white", font=("georgia", 20), command=pag_compra)
     regresar_boton.place(x=70, y=520)
 
-
 #----------------------Página de compra----------------------#
 def pag_compra():
     clean(interfaz)
@@ -288,8 +295,9 @@ def pag_compra():
     total_.place(relx=0.3, rely=0.88)
     
 #----------------------Páginas de compra exitosa----------------------#
-def pag_compra_exitosa2():
+def pag_compra_exitosa2(nombre, cedula):
     clean(interfaz)
+
     interfaz.config(bg="black")
     frame_blanco=tk.Frame(interfaz,bg="white", width=1100, height=480)
     frame_blanco.place(relx=0.5, rely=0.5, anchor="center")
@@ -316,8 +324,12 @@ def pag_compra_exitosa2():
     modelo_.place(relx=0.4, rely=0.44)
     precio_ = tk.Label(interfaz,text=precio, font=("Georgia", 25), bg="white", fg="black")
     precio_.place(relx=0.4, rely=0.52)
+    
+    elementos = {"Nombre":nombre, "Cedula":cedula, "Carro":marca[contador]["Modelo"], "Entidad": seleccion.get(),
+                 "Precio": marca[contador]["Precio"], "Cuota":round(precio/meses), "Total":cl.total_pagar(marca[contador]["Precio"])}
+    factura(elementos, True)
 
-def pag_compra_exitosa():
+def pag_compra_exitosa(nombre, cedula):
     clean(interfaz)
     interfaz.config(bg="black")
     frame_blanco=tk.Frame(interfaz,bg="white", width=1100, height=480)
@@ -345,7 +357,10 @@ def pag_compra_exitosa():
     modelo_.place(relx=0.4, rely=0.44)
     precio_ = tk.Label(interfaz,text=cl.total_pagar(marca[contador]["Precio"]), font=("Georgia", 25), bg="white", fg="black")
     precio_.place(relx=0.4, rely=0.52)
-
+    
+    elementos = {"Nombre":nombre, "Cedula":cedula, "Carro":marca[contador]["Modelo"], 
+                 "Precio": marca[contador]["Precio"], "Total":cl.total_pagar(marca[contador]["Precio"])}
+    factura(elementos, False)
 
 #----------------------Página de Lamborghini----------------------#
 def pag_lamborghini():
@@ -546,7 +561,6 @@ def pag_bmw():
     avanzar()
     regresar()
     suma_avanzar() # Hace el moviento al principio
-
 
 #----------------------Interfaz principal----------------------#
 def menu():

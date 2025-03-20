@@ -1,0 +1,8 @@
+     LUXURY CARS     
+-------------------------------
+Nombre: Sin Credito
+Cedula: 2
+Vehiculo: Urus
+Precio:1500000000
+Total:1533500000
+|GRACIAS POR TU COMPRA Sin Credito!
