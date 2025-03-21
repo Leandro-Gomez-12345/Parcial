@@ -20,7 +20,7 @@ def factura(diccionario, interes):
             archivo.write("Cuota:"+ str(diccionario["Cuota"]) +'\n')
         archivo.write("Total:"+ str(diccionario["Total"]) +'\n')
         archivo.write("|GRACIAS POR TU COMPRA "+ diccionario["Nombre"] + "!")
-        """tabla=pd.DataFrame({"Nombre:"[nombre], "Cedula:"[cedula], "Vehiculo:"[ marca[contador]["Modelo"]], "Precio:"[str(precio_)], "Cuota:"[str(round(precio / meses))], "Total:"[str(precio)]})
+        """tabla=pd.DataFrame({"Nombre":[nombre], "Cedula":[cedula], "Vehiculo":[ marca[contador]["Modelo"]], "Precio":[str(precio_)], "Cuota":[str(round(precio / meses))], "Total":[str(precio)]})
         tabla.to_excel("datos.xlsx", index=False)"""
 
 #def excel():
