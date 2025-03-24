@@ -24,6 +24,12 @@ def factura(diccionario, interes):
         
     excel(diccionario, interes)
 
+def mesualidad(valores_cuotas):
+    with open("Ganancia mesual de cuotas LUXURY CARS.txt", "w", encoding="utf-8") as archivo:
+        archivo.write("     LUXURY CARS     \n")
+        archivo.write("-------------------------------\n")
+        archivo.write(f"Luxury cars va a recir {sum(valores_cuotas)} de cuotas este mes")
+
 def excel(diccionario, interes):
     try:
         datos_nuevos = pd.DataFrame({"Nombre":[diccionario["Nombre"]], "Cedula":[diccionario["Cedula"]], 
@@ -32,8 +38,7 @@ def excel(diccionario, interes):
         datos_actuales = pd.read_excel("compras.xlsx")
         datos = pd.concat([datos_actuales, datos_nuevos], ignore_index=True)
         datos.to_excel("compras.xlsx", index=False)
+        mesualidad(list(datos["Valor de cuota"]))
     except:
         datos_nuevos.to_excel("compras.xlsx", index=False)
-
-
-"""Falta crear una funcion que cree un archivo de las ganancias mensules que gana LUXURY CARS por las cuotas de los usuarios"""
+        mesualidad(list(datos_nuevos["Valor de cuota"]))
