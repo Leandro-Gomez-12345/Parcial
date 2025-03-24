@@ -88,7 +88,6 @@ def informacion_comprador(con_interes):
     aceptar_boton.place(relx=0.45, rely=0.8)
     regresar_boton = tk.Button(frame_blanco, text=" < ", bg="black", fg="white", font=("georgia", 20), command=pag_compra)
     regresar_boton.place(x=70, y=520)
-    #Crear las funciones para que guarde la informacion
     
 #----------------------Página de info----------------------#
 def pag_info():
@@ -326,7 +325,7 @@ def pag_compra_exitosa2(nombre, cedula):
     precio_.place(relx=0.4, rely=0.52)
     
     elementos = {"Nombre":nombre, "Cedula":cedula, "Carro":marca[contador]["Modelo"], "Entidad": seleccion.get(),
-                 "Precio":marca[contador]["Precio"], "Cuota":round(precio/meses), "Meses":meses , "Total":cl.total_pagar(marca[contador]["Precio"])}
+                 "Precio":marca[contador]["Precio"], "Cuota":round(precio/meses), "Meses":meses , "Total":precio}
     factura(elementos, True)
 
 def pag_compra_exitosa(nombre, cedula):
