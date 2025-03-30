@@ -31,7 +31,7 @@ def suma_avanzar():
         
     imagen_siguiente = img.conversor(marca[contador]["Imagen"], x=340, y=196)
     carro.config(image=imagen_siguiente)
-    precio_.config(text=marca[contador]["Precio"])
+    precio_.config(text= cl.separador_comas(marca[contador]["Precio"]))
     año_.config(text=marca[contador]["Año"])
     modelo_.config(text=marca[contador]["Modelo"])
     descripcion_.config(text=marca[contador]["Descripción"])
@@ -45,7 +45,7 @@ def resta_avanzar():
         
     imagen_siguiente = img.conversor(marca[contador]["Imagen"], x=340, y=196)
     carro.config(image=imagen_siguiente)
-    precio_.config(text=marca[contador]["Precio"])
+    precio_.config(text= cl.separador_comas(marca[contador]["Precio"]))
     año_.config(text=marca[contador]["Año"])
     modelo_.config(text=marca[contador]["Modelo"])
     descripcion_.config(text=marca[contador]["Descripción"])
@@ -54,9 +54,7 @@ def resta_avanzar():
 def clean(frame):
     for widget in frame.winfo_children():
         widget.destroy()
-
-
-         
+     
 def informacion_comprador(con_interes):
     clean(interfaz)
     frame_blanco = tk.Frame(interfaz,bg="white", width=1200, height=600)
@@ -103,13 +101,16 @@ def pag_info():
     frame_interfaz = tk.Frame(micro_window, bg="white", width=580, height=580)
     frame_interfaz.place(relx=0.5, rely=0.5, anchor="center")
     
-    info_addi=tk.Label(frame_interfaz, text="ADDI es un sistema de credito que te permite pagar tu carro en 12 meses, los primeros 3 meses no se pagan intereses. La tasa de interes: 4%", font=("Georgia", 15), bg="white", fg="black", wraplength=250)
+    info_addi=tk.Label(frame_interfaz, text="ADDI es un sistema de credito que te permite pagar tu carro en 12 meses, los primeros 3 meses no se pagan intereses. La tasa de interes: 4%", 
+                       font=("Georgia", 15), bg="white", fg="black", wraplength=250)
     info_addi.place(relx=0.25, rely=0.3, anchor="center")
 
-    info_sistecredito=tk.Label(frame_interfaz, text="SISTECREDITO es un sistema de credito que te permite pagar tu carro en 6 meses. La tasa de interes: 2.66%", font=("Georgia", 15), bg="white", fg="black", wraplength=250)
+    info_sistecredito=tk.Label(frame_interfaz, text="SISTECREDITO es un sistema de credito que te permite pagar tu carro en 6 meses. La tasa de interes: 2.66%", 
+                               font=("Georgia", 15), bg="white", fg="black", wraplength=250)
     info_sistecredito.place(relx=0.75, rely=0.3, anchor="center")
 
-    info_su=tk.Label(frame_interfaz, text="SU es un sistema de credito que te permite pagar tu carro en 36 meses, los primeros 6 meses no se pagan intereses. La tasa de interes: 5%", font=("Georgia", 15), bg="white", fg="black", wraplength=250)
+    info_su=tk.Label(frame_interfaz, text="SU es un sistema de credito que te permite pagar tu carro en 36 meses, los primeros 6 meses no se pagan intereses. La tasa de interes: 5%", 
+                     font=("Georgia", 15), bg="white", fg="black", wraplength=250)
     info_su.place(relx=0.5, rely=0.75, anchor="center")
 
     # Cargamos las imágenes usando la función conversor y guardamos las referencias en la micro ventana
@@ -146,7 +147,7 @@ def calculadora_interfaz():
     sistema_label = tk.Label(frame_blanco, text="Sistema de credito:", bg="white", font=("georgia", 20))
     sistema_label.place(relx=0.1, rely=0.6)
     
-    valor_calculado = tk.Label(frame_blanco, text=cl.total_pagar(marca[contador]["Precio"]), bg="white", font=("georgia", 20))
+    valor_calculado = tk.Label(frame_blanco, text= cl.separador_comas(cl.total_pagar(marca[contador]["Precio"])), bg="white", font=("georgia", 20))
     valor_calculado.place(relx=0.4, rely=0.4)
     meses_entry = tk.Entry(frame_blanco)
     meses_entry.config(width=12, font=("georgia", 20))
@@ -202,11 +203,11 @@ def si_no(lista_con_informacion):
         modelo_.place(relx=0.55, rely=0.28)
         meses_=tk.Label(frame_blanco, text=meses, font=("Georgia", 25), bg="white", fg="black")
         meses_.place(relx=0.55, rely=0.38)
-        preci = tk.Label(frame_blanco, text=cl.total_pagar(marca[contador]["Precio"]), font=("Georgia", 25), bg="white", fg="black")
+        preci = tk.Label(frame_blanco, text= cl.separador_comas(marca[contador]["Precio"]), font=("Georgia", 25), bg="white", fg="black")
         preci.place(relx=0.55, rely=0.48)
-        preci_interes = tk.Label(frame_blanco, text=precio, font=("Georgia", 25), bg="white", fg="black")
+        preci_interes = tk.Label(frame_blanco, text= cl.separador_comas(precio), font=("Georgia", 25), bg="white", fg="black")
         preci_interes.place(relx=0.55, rely=0.58)
-        meses_pagar = tk.Label(frame_blanco, text=round(precio / meses), font=("Georgia", 25), bg="white", fg="black")
+        meses_pagar = tk.Label(frame_blanco, text= cl.separador_comas(round(precio / meses)), font=("Georgia", 25), bg="white", fg="black")
         meses_pagar.place(relx=0.55, rely=0.78)
 
 #------------ Credito --------
@@ -284,13 +285,13 @@ def pag_compra():
     
     modelo_ = tk.Label(frame_blanco, text=marca[contador]["Modelo"], font=("Georgia", 18), bg="white", fg="black")
     modelo_.place(relx=0.3, rely=0.52)
-    precio_ = tk.Label(frame_blanco, text=marca[contador]["Precio"], font=("Georgia", 18), bg="white", fg="black")
+    precio_ = tk.Label(frame_blanco, text= cl.separador_comas(marca[contador]["Precio"]), font=("Georgia", 18), bg="white", fg="black")
     precio_.place(relx=0.3, rely=0.6)
-    papeleo_ = tk.Label(frame_blanco, text="$5.000.000", font=("Georgia", 18), bg="white", fg="black") 
+    papeleo_ = tk.Label(frame_blanco, text="5.000.000   COP", font=("Georgia", 18), bg="white", fg="black") 
     papeleo_.place(relx=0.3, rely=0.68)
     impuesto_ = tk.Label(frame_blanco, text="1,9%", font=("Georgia", 18), bg="white", fg="black")
     impuesto_.place(relx=0.3, rely=0.76)
-    total_ = tk.Label(frame_blanco, text=cl.total_pagar(marca[contador]["Precio"]), font=("Georgia", 18), bg="white", fg="black")
+    total_ = tk.Label(frame_blanco, text=cl.separador_comas(cl.total_pagar(marca[contador]["Precio"])), font=("Georgia", 18), bg="white", fg="black")
     total_.place(relx=0.3, rely=0.88)
     
 #----------------------Páginas de compra exitosa----------------------#
@@ -310,7 +311,7 @@ def pag_compra_exitosa2(nombre, cedula):
     texto_precio_total.place(relx=0.14, rely=0.52)
     texto_cancelado=tk.Label(frame_blanco, text="Abonado:", font=("Georgia", 25), bg="white", fg="black")
     texto_cancelado.place(relx=0.14, rely=0.62)
-    cancelado_=tk.Label(frame_blanco, text=round(precio / meses), font=("Georgia", 25), bg="white", fg="black")
+    cancelado_=tk.Label(frame_blanco, text=cl.separador_comas(round(precio / meses)), font=("Georgia", 25), bg="white", fg="black")
     cancelado_.place(relx=0.4, rely=0.62)
     texto_gracias=tk.Label(frame_blanco, text="GRACIAS POR CONFIAR EN", font=("Georgia", 40), bg="white", fg="black")
     texto_gracias.place(relx=0.5, rely=0.9, anchor="center")
@@ -321,7 +322,7 @@ def pag_compra_exitosa2(nombre, cedula):
     
     modelo_ = tk.Label(interfaz, text=marca[contador]["Modelo"], font=("Georgia", 25), bg="white", fg="black")
     modelo_.place(relx=0.4, rely=0.44)
-    precio_ = tk.Label(interfaz,text=precio, font=("Georgia", 25), bg="white", fg="black")
+    precio_ = tk.Label(interfaz,text=cl.separador_comas(precio), font=("Georgia", 25), bg="white", fg="black")
     precio_.place(relx=0.4, rely=0.52)
     
     elementos = {"Nombre":nombre, "Cedula":cedula, "Carro":marca[contador]["Modelo"], "Entidad": seleccion.get(),
@@ -343,7 +344,7 @@ def pag_compra_exitosa(nombre, cedula):
     texto_precio_total.place(relx=0.14, rely=0.52)
     texto_cancelado=tk.Label(frame_blanco, text="Cancelado:", font=("Georgia", 25), bg="white", fg="black")
     texto_cancelado.place(relx=0.14, rely=0.62)
-    cancelado_=tk.Label(frame_blanco, text=cl.total_pagar(marca[contador]["Precio"]), font=("Georgia", 25), bg="white", fg="black")
+    cancelado_=tk.Label(frame_blanco, text=cl.separador_comas(cl.total_pagar(marca[contador]["Precio"])), font=("Georgia", 25), bg="white", fg="black")
     cancelado_.place(relx=0.4, rely=0.62)
     texto_gracias=tk.Label(frame_blanco, text="GRACIAS POR CONFIAR EN", font=("Georgia", 40), bg="white", fg="black")
     texto_gracias.place(relx=0.5, rely=0.9, anchor="center")
@@ -354,7 +355,7 @@ def pag_compra_exitosa(nombre, cedula):
     
     modelo_ = tk.Label(interfaz, text=marca[contador]["Modelo"], font=("Georgia", 25), bg="white", fg="black")
     modelo_.place(relx=0.4, rely=0.44)
-    precio_ = tk.Label(interfaz,text=cl.total_pagar(marca[contador]["Precio"]), font=("Georgia", 25), bg="white", fg="black")
+    precio_ = tk.Label(interfaz,text= cl.separador_comas(cl.total_pagar(marca[contador]["Precio"])), font=("Georgia", 25), bg="white", fg="black")
     precio_.place(relx=0.4, rely=0.52)
     
     elementos = {"Nombre":nombre, "Cedula":cedula, "Carro":marca[contador]["Modelo"], 
@@ -434,7 +435,8 @@ def pag_ferrari():
     modelo_label.place(relx=0.5, rely=0.6)
     descripcion_label=tk.Label(frame_blanco, text="Descripción:", font=("Times New Roman", 30), bg="white", fg="black")
     descripcion_label.place(relx=0.5, rely=0.7)
-    boton_comprar=tk.Button(frame_blanco, text="COMPRAR", font=("Georgia", 20), bg="#EB1B00", fg="white", activebackground="white", activeforeground="#EB1B00", cursor="hand2", command=pag_compra)
+    boton_comprar=tk.Button(frame_blanco, text="COMPRAR", font=("Georgia", 20), bg="#EB1B00", fg="white", activebackground="white", activeforeground="#EB1B00", 
+                            cursor="hand2", command=pag_compra)
     boton_comprar.place(relx=0.25, rely=0.9, anchor="center")
 
     marca = cl.verificador_marca("Ferrari")
@@ -482,7 +484,8 @@ def pag_mercedes():
     modelo_label.place(relx=0.5, rely=0.6)
     descripcion_label=tk.Label(frame_blanco, text="Descripción:", font=("Times New Roman", 30), bg="white", fg="black")
     descripcion_label.place(relx=0.5, rely=0.7)
-    boton_comprar=tk.Button(frame_blanco, text="COMPRAR", font=("Georgia", 20), bg="#929292", fg="white", activebackground="white", activeforeground="#929292", cursor="hand2", command=pag_compra)
+    boton_comprar=tk.Button(frame_blanco, text="COMPRAR", font=("Georgia", 20), bg="#929292", fg="white", activebackground="white", activeforeground="#929292", 
+                            cursor="hand2", command=pag_compra)
     boton_comprar.place(relx=0.25, rely=0.9, anchor="center")
 
     marca = cl.verificador_marca("Mercedes")
@@ -537,7 +540,8 @@ def pag_bmw():
     modelo_label.place(relx=0.5, rely=0.6)
     descripcion_label=tk.Label(frame_blanco, text="Descripción:", font=("Times New Roman", 30), bg="white", fg="black")
     descripcion_label.place(relx=0.5, rely=0.7)
-    boton_comprar=tk.Button(frame_blanco, text="COMPRAR", font=("Georgia", 20), bg="#1786EB", fg="white", activebackground="white", activeforeground="#1786EB", cursor="hand2", command=pag_compra)
+    boton_comprar=tk.Button(frame_blanco, text="COMPRAR", font=("Georgia", 20), bg="#1786EB", fg="white", activebackground="white", activeforeground="#1786EB", 
+                            cursor="hand2", command=pag_compra)
     boton_comprar.place(relx=0.25, rely=0.9, anchor="center")
 
     marca = cl.verificador_marca("Bmw")
@@ -576,16 +580,20 @@ def menu():
     escoger_marca=tk.Label(frametitulo, text="- ESCOGE TU MARCA -", font=("Georgia", 30), bg="black", fg="yellow")
     escoger_marca.place(relx=0.5, rely=0.43, anchor="center")
 
-    boton_bmw=tk.Button(frametitulo, text="BMW", font=("Georgia", 20), bg="white", fg="black", width=10, height=1, activebackground="#1786EB", activeforeground="white", cursor="hand2", command=pag_bmw)
+    boton_bmw=tk.Button(frametitulo, text="BMW", font=("Georgia", 20), bg="white", fg="black", width=10, height=1, activebackground="#1786EB", activeforeground="white", 
+                        cursor="hand2", command=pag_bmw)
     boton_bmw.place(relx=0.15, rely=0.85, anchor="center")
 
-    boton_mercedes=tk.Button(frametitulo, text="Mercedes", font=("Georgia", 20), bg="white", fg="black", width=10, height=1, activebackground="black", activeforeground="white", cursor="hand2", command=pag_mercedes)
+    boton_mercedes=tk.Button(frametitulo, text="Mercedes", font=("Georgia", 20), bg="white", fg="black", width=10, height=1, activebackground="black", activeforeground="white", 
+                             cursor="hand2", command=pag_mercedes)
     boton_mercedes.place(relx=0.385, rely=0.85, anchor="center")
 
-    boton_ferrari=tk.Button(frametitulo, text="Ferrari", font=("Georgia", 20), bg="white", fg="black", width=10, height=1, activebackground="#EB1B00", activeforeground="white", cursor="hand2", command=pag_ferrari)
+    boton_ferrari=tk.Button(frametitulo, text="Ferrari", font=("Georgia", 20), bg="white", fg="black", width=10, height=1, activebackground="#EB1B00", activeforeground="white", 
+                            cursor="hand2", command=pag_ferrari)
     boton_ferrari.place(relx=0.615, rely=0.85, anchor="center")
 
-    boton_lamborghini=tk.Button(frametitulo, text="Lamborghini", font=("Georgia", 20), bg="white", fg="black", width=10, height=1,  activebackground="black", activeforeground="#EBBD36", cursor="hand2", command=pag_lamborghini)
+    boton_lamborghini=tk.Button(frametitulo, text="Lamborghini", font=("Georgia", 20), bg="white", fg="black", width=10, height=1,  activebackground="black", activeforeground="#EBBD36", 
+                                cursor="hand2", command=pag_lamborghini)
     boton_lamborghini.place(relx=0.85, rely=0.85, anchor="center")
 
     #------logo de carros-----

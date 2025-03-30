@@ -1,4 +1,5 @@
 import pandas as pd
+from calculos import separador_comas
 
 """Para el parcial, deberán entonces desarrollar un archivo de factura para cada compra realizada en formato txt, 
 que incluya la información del comprador, el sistema de créditos, las cuotas a pagar y el vehículo comprado. 
@@ -15,11 +16,11 @@ def factura(diccionario, interes):
         archivo.write("Vehiculo: "+ diccionario["Carro"] +"\n")
         if interes:
             archivo.write("Sistemas de credito: "+ diccionario["Entidad"] +'\n')
-        archivo.write("Precio: "+ str(diccionario["Precio"]) +'\n')
+        archivo.write("Precio: "+ separador_comas(str(diccionario["Precio"])) +'\n')
         if interes:
-            archivo.write("Valor de cuota: "+ str(diccionario["Cuota"]) +'\n')
-            archivo.write("Cuotas a pagar: "+ str(diccionario["Meses"]) +'\n')
-        archivo.write("Total: "+ str(diccionario["Total"]) +'\n')
+            archivo.write("Valor de cuota: "+ separador_comas(str(diccionario["Cuota"])) +'\n')
+            archivo.write("Cuotas a pagar: "+ separador_comas(str(diccionario["Meses"])) +'\n')
+        archivo.write("Total: "+ separador_comas(str(diccionario["Total"])) +'\n')
         archivo.write("¡GRACIAS POR TU COMPRA "+ diccionario["Nombre"] + "!")
         
     excel(diccionario, interes)
@@ -28,7 +29,7 @@ def mesualidad(valores_cuotas):
     with open("Ganancia mesual de cuotas LUXURY CARS.txt", "w", encoding="utf-8") as archivo:
         archivo.write("     LUXURY CARS     \n")
         archivo.write("-------------------------------\n")
-        archivo.write(f"Luxury cars va a recir {sum(valores_cuotas)} de cuotas este mes")
+        archivo.write(f"Luxury cars va a recir {separador_comas(sum(valores_cuotas))} de cuotas este mes")
 
 def excel(diccionario, interes):
     try:

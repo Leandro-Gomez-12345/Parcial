@@ -160,3 +160,14 @@ def calculadora_credito(precio_carro, meses, sistema):
     else:
         messagebox.showwarning("Informacion insuficiente", "Termina de completar los datos para poder calcular el interes. ")
         return []
+
+def separador_comas(numero):
+    numero = str(numero)
+    digitos = len(numero)
+    separados = ''
+    
+    while digitos > 3:
+        separados = '.' + numero[digitos-3 : digitos] + separados
+        digitos -= 3
+    separados = numero[:digitos] + separados
+    return separados + "   COP"
