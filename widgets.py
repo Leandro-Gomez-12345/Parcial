@@ -182,9 +182,9 @@ def si_no(lista_con_informacion):
         titulo1.place(relx=0.5,rely=0.15, anchor="center")
         boton1= tk.Button(frame_blanco, text="Aceptar", bg="black", fg="white", font=("georgia", 20), 
                           command=lambda: informacion_comprador(True))
-        boton1.place(relx=0.3, rely=0.92, anchor="center")
+        boton1.place(relx=0.3, rely=0.90, anchor="center")
         boton2= tk.Button (frame_blanco, text="Rechazar", bg="black", fg="white", font=("georgia", 20), command=calculadora_interfaz)
-        boton2.place(relx=0.7, rely=0.92, anchor="center")
+        boton2.place(relx=0.7, rely=0.90, anchor="center")
 
         modelo_label=tk.Label(frame_blanco, text="Modelo:", font=("Georgia", 25), bg="white", fg="black")
         modelo_label.place(relx=0.14, rely=0.28)
@@ -194,10 +194,8 @@ def si_no(lista_con_informacion):
         precio_label.place(relx=0.14, rely=0.48)
         precio_intereses=tk.Label(frame_blanco, text="Precio con intereses:", font=("Georgia", 25), bg="white", fg="black")
         precio_intereses.place(relx=0.14, rely=0.58)    
-        total_label=tk.Label(frame_blanco, text="Total:", font=("Georgia", 25), bg="white", fg="black")
-        total_label.place(relx=0.14, rely=0.68)
         valor_pagar_mensual=tk.Label(frame_blanco, text="Valor a pagar mensual:", font=("Georgia", 25), bg="white", fg="black")
-        valor_pagar_mensual.place(relx=0.14, rely=0.78)
+        valor_pagar_mensual.place(relx=0.14, rely=0.68)
 
         modelo_=tk.Label(frame_blanco, text=marca[contador]["Modelo"], font=("Georgia", 25), bg="white", fg="black")
         modelo_.place(relx=0.55, rely=0.28)
@@ -208,7 +206,7 @@ def si_no(lista_con_informacion):
         preci_interes = tk.Label(frame_blanco, text= cl.separador_comas(precio), font=("Georgia", 25), bg="white", fg="black")
         preci_interes.place(relx=0.55, rely=0.58)
         meses_pagar = tk.Label(frame_blanco, text= cl.separador_comas(round(precio / meses)), font=("Georgia", 25), bg="white", fg="black")
-        meses_pagar.place(relx=0.55, rely=0.78)
+        meses_pagar.place(relx=0.55, rely=0.68)
 
 #------------ Credito --------
 def credito():
